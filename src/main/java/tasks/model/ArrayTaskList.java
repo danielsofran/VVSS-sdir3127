@@ -45,6 +45,12 @@ public class ArrayTaskList extends TaskList{
         this.tasks = new Task[currentCapacity];
     }
 
+    public ArrayTaskList(ArrayTaskList toCopyObject) {
+        this.numberOfTasks = toCopyObject.numberOfTasks;
+        this.currentCapacity = toCopyObject.currentCapacity;
+        this.tasks = Arrays.copyOf(toCopyObject.tasks,toCopyObject.currentCapacity);
+    }
+
     @Override
     public Iterator<Task> iterator() {
         return new ArrayTaskListIterator();
@@ -135,14 +141,5 @@ public class ArrayTaskList extends TaskList{
                 ", numberOfTasks=" + numberOfTasks +
                 ", currentCapacity=" + currentCapacity +
                 '}';
-    }
-    @Override
-    protected ArrayTaskList clone() throws CloneNotSupportedException {
-        ArrayTaskList tasks = new ArrayTaskList();
-        for (int i = 0; i < this.tasks.length; i++){
-            tasks.add(this.getTask(i));
-        }
-        return tasks;
-
     }
 }
