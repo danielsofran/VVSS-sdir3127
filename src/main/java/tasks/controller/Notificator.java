@@ -24,45 +24,50 @@ public class Notificator extends Thread {
 
     @Override
     public void run() {
-        Date currentDate = new Date();
         while (true) {
 
-            for (Task t : tasksList) {
-                if (t.isActive()) {
-                    if (t.isRepeated() && t.getEndTime().after(currentDate)){
+            processTasks();
 
-                        Date next = t.nextTimeAfter(currentDate);
-                        long currentMinute = getTimeInMinutes(currentDate);
-                        long taskMinute = getTimeInMinutes(next);
-                        if (currentMinute == taskMinute){
-                            showNotification(t);
-                        }
-                    }
-                    else {
-                        if (!t.isRepeated()){
-                            if (getTimeInMinutes(currentDate) == getTimeInMinutes(t.getTime())){
-                                showNotification(t);
-                            }
-                        }
-
-                    }
-                }
-
-            }
             try {
-                Thread.sleep(millisecondsInSec*secondsInMin);
+                Thread.sleep(millisecondsInSec * secondsInMin);
 
             } catch (InterruptedException e) {
                 log.error("thread interrupted exception");
             }
-            currentDate = new Date();
         }
     }
+
+    private void processTasks() {
+        Date currentDate = new Date();
+
+        for (Task t : tasksList) {
+            if (t.isActive()) {
+                processTask(t, currentDate);
+            }
+        }
+    }
+
+    private void processTask(Task t, Date currentDate) {
+        if (t.isRepeated() && t.getEndTime().after(currentDate)){
+            Date next = t.nextTimeAfter(currentDate);
+            long currentMinute = getTimeInMinutes(currentDate);
+            long taskMinute = getTimeInMinutes(next);
+            if (currentMinute == taskMinute){
+                showNotification(t);
+            }
+        }
+        else {
+            if (!t.isRepeated()){
+                if (getTimeInMinutes(currentDate) == getTimeInMinutes(t.getTime())){
+                    showNotification(t);
+                }
+            }
+        }
+    }
+
     public static void showNotification(Task task){
         log.info("push notification showing");
-        Platform.runLater(() -> {
-            Notifications.create().title("Task reminder").text("It's time for " + task.getTitle()).showInformation();
-        });
+        Platform.runLater(() -> Notifications.create().title("Task reminder").text("It's time for " + task.getTitle()).showInformation());
     }
     private static long getTimeInMinutes(Date date){
         return date.getTime()/millisecondsInSec/secondsInMin;
