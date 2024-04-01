@@ -30,13 +30,13 @@ public class Controller {
     TasksService service;
     DateService dateService;
 
-    public static final Stage editNewStage = new Stage();
+    public static Stage editNewStage;
     public static Stage infoStage;
 
     public static TableView mainTable;
 
     @FXML
-    public  TableView<Task> tasks;
+    public  TableView tasks;
     @FXML
     private TableColumn<Task, String> columnTitle;
     @FXML
@@ -60,6 +60,7 @@ public class Controller {
         this.tasksList=service.getObservableList();
         updateCountLabel(tasksList);
         tasks.setItems(tasksList);
+        mainTable = tasks;
 
         tasksList.addListener((ListChangeListener.Change<? extends Task> c) -> {
                     updateCountLabel(tasksList);
@@ -85,6 +86,7 @@ public class Controller {
         NewEditController.setClickedButton((Button) source);
 
         try {
+            editNewStage = new Stage();
             NewEditController.setCurrentStage(editNewStage);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/new-edit-task.fxml"));
             Parent root = loader.load();//getClass().getResource("/fxml/new-edit-task.fxml"));
@@ -104,7 +106,7 @@ public class Controller {
     }
     @FXML
     public void deleteTask(){
-        Task toDelete = tasks.getSelectionModel().getSelectedItem();
+        Task toDelete = (Task)tasks.getSelectionModel().getSelectedItem();
         tasksList.remove(toDelete);
         TaskIO.rewriteFile(tasksList);
     }
