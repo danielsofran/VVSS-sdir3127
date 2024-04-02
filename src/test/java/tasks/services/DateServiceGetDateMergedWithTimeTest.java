@@ -68,7 +68,7 @@ class DateServiceGetDateMergedWithTimeTest {
     @Tag("invalid-param")
     void timeUnitExceedsBounds() {
         String time = "24:00";
-        Date date = Date.from(Instant.now());
+        Date date = fromLocalDate(LocalDate.of(1970, 1, 1));
         assertThrows(IllegalArgumentException.class, () -> {
             DateService.getDateMergedWithTime(time, date);
         });
@@ -78,7 +78,7 @@ class DateServiceGetDateMergedWithTimeTest {
     @Tag("invalid-param")
     void timeUnitExceedsBounds2() {
         String time = "23:60";
-        Date date = Date.from(Instant.now());
+        Date date = fromLocalDate(LocalDate.of(1970, 1, 1));
         assertThrows(IllegalArgumentException.class, () -> {
             DateService.getDateMergedWithTime(time, date);
         });
@@ -90,12 +90,14 @@ class DateServiceGetDateMergedWithTimeTest {
         "23:59, 1970-01-01 00:00:00, 1970-01-01 23:59:00",
         "00:00, 1970-01-02 00:00:00, 1970-01-02 00:00:00",
         "23:59, 1970-01-02 00:00:00, 1970-01-02 23:59:00",
+        "00:00, 9999-12-30 00:00:00, 9999-12-30 00:00:00",
+        "23:59, 9999-12-30 00:00:00, 9999-12-30 23:59:00",
         "00:00, 9999-12-31 00:00:00, 9999-12-31 00:00:00",
         "23:59, 9999-12-31 00:00:00, 9999-12-31 23:59:00",
     })
     @DisplayName("Positive test cases")
     @Tag("happy-flow")
-    void happyFlow(String time, @ConvertWith(DateConverter.class) Date noTimeDate, @ConvertWith(DateConverter.class) Date expectedDate) {
+    void edgeCases(String time, @ConvertWith(DateConverter.class) Date noTimeDate, @ConvertWith(DateConverter.class) Date expectedDate) {
         Date resultDate = DateService.getDateMergedWithTime(time, noTimeDate);
         assertEquals(expectedDate, resultDate);
     }
