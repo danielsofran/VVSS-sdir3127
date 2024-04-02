@@ -15,7 +15,7 @@
 <div class="summary"><p id="printedby">Printed by TestLink on 02/04/2024</p></div>
 <div class="pagefooter" id="copyright">2012 &copy; TestLink Community</div>
 <h1 class="general" style="page-break-before: always">Table Of Contents</h1><div class="toc"><p style="padding-left: 20px;"><b><a href="#toc_1">1.sdir3217_BBT</a></b></p>
-<p style="padding-left: 45px;"><a href="#toc_tc21102">P237-47: TC01_EC - happy flow</a></p><p style="padding-left: 45px;"><a href="#toc_tc21149">P237-48: TC03_EC - letters</a></p><p style="padding-left: 45px;"><a href="#toc_tc21151">P237-49: TC01-14_BVA - edge</a></p><p style="padding-left: 45px;"><a href="#toc_tc21153">P237-50: TC15_BVA - time</a></p></div><h1 class="doclevel" >Scope</h1>
+<p style="padding-left: 45px;"><a href="#toc_tc21102">P237-47: TC01_EC - happy flow</a></p><p style="padding-left: 45px;"><a href="#toc_tc21149">P237-48: TC03_EC - letters</a></p><p style="padding-left: 45px;"><a href="#toc_tc21151">P237-49: TC01-14_BVA - edge</a></p><p style="padding-left: 45px;"><a href="#toc_tc21153">P237-50: TC15_BVA - time hour</a></p><p style="padding-left: 45px;"><a href="#toc_tc21171">P237-51: TC16_BVA - time min</a></p><p style="padding-left: 45px;"><a href="#toc_tc21173">P237-52: TC02_EC</a></p></div><h1 class="doclevel" >Scope</h1>
 <div class="txtlevel"><p>Testing project for group 237</p></div>
  <br/><a name='toc_1'></a>
 <h1 class='doclevel'>1.Test Suite : sdir3217_BBT</h1>
@@ -83,9 +83,9 @@
 <tr><td width="20%" valign="top"><span class="label">Keywords:</span></td><td colspan="3">&nbsp;None<br/></td></tr>
 </table>
 </div>
-<a name="toc_tc21153"></a><p>&nbsp;</p><div> <table class="tc" width="90%" ><tr><th colspan="4">Test Case P237-50: TC15_BVA - time&nbsp;<span style="font-size: 80%;">[Version  : 1]</span></th></tr>
+<a name="toc_tc21153"></a><p>&nbsp;</p><div> <table class="tc" width="90%" ><tr><th colspan="4">Test Case P237-50: TC15_BVA - time hour&nbsp;<span style="font-size: 80%;">[Version  : 1]</span></th></tr>
 <tr><td width="20%" valign="top"><span class="label">Author:</span></td><td colspan="3">sdir3217</td></tr>
-<tr><td colspan="4"><span class="label">Summary:</span><br /><p>fail due to invalid time</p>
+<tr><td colspan="4"><span class="label">Summary:</span><br /><p>fail due to invalid time hour</p>
 </td></tr><tr><td colspan="4"><span class="label">Preconditions:</span><br /><p>time is String</p>
 
 <p>dateNoTime is Date</p>
@@ -94,6 +94,36 @@
 <tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="3">Medium</td></tr>
 <tr><td colspan="4"></td></tr><tr><td > name of the autotest class:</td><td  colspan = "3" >tasks.service.DateServiceGetDateMergedWithTimeTest</td></tr>
 <tr><td > name of the test method:</td><td  colspan = "3" >tasks.service.DateServiceGetDateMergedWithTimeTest#timeExceedsBounds</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="3">&nbsp;None<br /></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Keywords:</span></td><td colspan="3">&nbsp;None<br/></td></tr>
+</table>
+</div>
+<a name="toc_tc21171"></a><p>&nbsp;</p><div> <table class="tc" width="90%" ><tr><th colspan="4">Test Case P237-51: TC16_BVA - time min&nbsp;<span style="font-size: 80%;">[Version  : 1]</span></th></tr>
+<tr><td width="20%" valign="top"><span class="label">Author:</span></td><td colspan="3">sdir3217</td></tr>
+<tr><td colspan="4"><span class="label">Summary:</span><br /><p>time minute is invalid</p>
+</td></tr><tr><td colspan="4"><span class="label">Preconditions:</span><br /><p>time is String</p>
+
+<p>noTImeDate is Date</p>
+</td></tr><tr><td width="20%" valign="top"><span class="label">Execution type:</span></td><td colspan="3">Automated</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Estimated exec. duration (min):</span></td><td colspan="3"></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="3">Medium</td></tr>
+<tr><td colspan="4"></td></tr><tr><td > name of the autotest class:</td><td  colspan = "3" >tasks.service.DateServiceGetDateMergedWithTimeTest</td></tr>
+<tr><td > name of the test method:</td><td  colspan = "3" >tasks.service.DateServiceGetDateMergedWithTimeTest#timeUnitExceedsBounds2</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="3">&nbsp;None<br /></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Keywords:</span></td><td colspan="3">&nbsp;None<br/></td></tr>
+</table>
+</div>
+<a name="toc_tc21173"></a><p>&nbsp;</p><div> <table class="tc" width="90%" ><tr><th colspan="4">Test Case P237-52: TC02_EC&nbsp;<span style="font-size: 80%;">[Version  : 1]</span></th></tr>
+<tr><td width="20%" valign="top"><span class="label">Author:</span></td><td colspan="3">sdir3217</td></tr>
+<tr><td colspan="4"><span class="label">Summary:</span><br /><p>fail due to not having : as sepatrator</p>
+</td></tr><tr><td colspan="4"><span class="label">Preconditions:</span><br /><p>time is String</p>
+
+<p>noTimeDate is Date</p>
+</td></tr><tr><td width="20%" valign="top"><span class="label">Execution type:</span></td><td colspan="3">Automated</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Estimated exec. duration (min):</span></td><td colspan="3"></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="3">Medium</td></tr>
+<tr><td colspan="4"></td></tr><tr><td > name of the autotest class:</td><td  colspan = "3" >tasks.service.DateServiceGetDateMergedWithTimeTest</td></tr>
+<tr><td > name of the test method:</td><td  colspan = "3" >tasks.service.DateServiceGetDateMergedWithTimeTest#splitterNotFount</td></tr>
 <tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="3">&nbsp;None<br /></td></tr>
 <tr><td width="20%" valign="top"><span class="label">Keywords:</span></td><td colspan="3">&nbsp;None<br/></td></tr>
 </table>
