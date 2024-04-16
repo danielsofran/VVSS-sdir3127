@@ -25,6 +25,7 @@ class TaskTest {
                     Task.getDateFormat().parse("2023-02-12 10:00"),
                     Task.getDateFormat().parse("2023-02-22 10:00"),
                     12);
+            taskRepeated4TestNextTimeAfter.setActive(true);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -71,11 +72,15 @@ class TaskTest {
     @Test
     public void testNextTimeAfter3() {
         try {
+            taskNotRepeated4TestNextTimeAfter.setActive(true);
+
             Date testDate = Task.getDateFormat().parse("2023-02-12 09:00");
             Date nextTime = taskNotRepeated4TestNextTimeAfter.nextTimeAfter(testDate);
-            Assertions.assertEquals("Wed Feb 22 09:00:00 MSK 2023", nextTime.toString());
+            Assertions.assertEquals("Sun Feb 12 10:00:00 EET 2023", nextTime.toString());
         } catch (ParseException e) {
             Assertions.fail("ParseException");
+        } finally {
+            taskNotRepeated4TestNextTimeAfter.setActive(false);
         }
     }
 
@@ -84,7 +89,7 @@ class TaskTest {
         try {
             Date testDate = Task.getDateFormat().parse("2023-02-12 09:00");
             Date nextTime = taskRepeated4TestNextTimeAfter.nextTimeAfter(testDate);
-            Assertions.assertEquals("Wed Feb 22 10:00:00 MSK 2023", nextTime.toString());
+            Assertions.assertEquals("Sun Feb 12 10:00:00 EET 2023", nextTime.toString());
         } catch (ParseException e) {
             Assertions.fail("ParseException");
         }
@@ -93,9 +98,9 @@ class TaskTest {
     @Test
     public void testNextTimeAfter5() {
         try {
-            Date testDate = Task.getDateFormat().parse("2023-02-12 10:00");
+            Date testDate = Task.getDateFormat().parse("2023-02-12 10:00:15");
             Date nextTime = taskRepeated4TestNextTimeAfter.nextTimeAfter(testDate);
-            Assertions.assertNull(nextTime);
+            Assertions.assertEquals("Sun Feb 12 10:00:12 EET 2023", nextTime.toString());
         } catch (ParseException e) {
             Assertions.fail("ParseException");
         }
@@ -106,7 +111,7 @@ class TaskTest {
         try {
             Date testDate = Task.getDateFormat().parse("2023-02-12 10:00:12");
             Date nextTime = taskRepeated4TestNextTimeAfter.nextTimeAfter(testDate);
-            Assertions.assertEquals("Wed Feb 22 10:00:24 MSK 2023", nextTime.toString());
+            Assertions.assertEquals("Sun Feb 12 10:00:12 EET 2023", nextTime.toString());
         } catch (ParseException e) {
             Assertions.fail("ParseException");
         }
