@@ -44,6 +44,16 @@ class TaskTest {
     }
 
     @Test
+    public void testNextTimeAfter0() {
+        try {
+            Date nextTime = taskRepeated4TestNextTimeAfter.nextTimeAfter(null);
+            Assertions.fail("NullPointerException not thrown");
+        } catch (NullPointerException e) {
+            assert true;
+        }
+    }
+
+    @Test
     public void testNextTimeAfter1() {
         try {
             Date testDate = Task.getDateFormat().parse("2023-02-22 10:00");
@@ -112,6 +122,28 @@ class TaskTest {
             Date testDate = Task.getDateFormat().parse("2023-02-12 10:01:30");
             Date nextTime = taskRepeated4TestNextTimeAfter.nextTimeAfter(testDate);
             Assertions.assertEquals("Sun Feb 12 10:01:12 EET 2023", nextTime.toString());
+        } catch (ParseException e) {
+            Assertions.fail("ParseException");
+        }
+    }
+
+    @Test
+    public void testNextTimeAfter7() {
+        try {
+            Date testDate = Task.getDateFormat().parse("2023-02-22 09:48");
+            Date nextTime = taskRepeated4TestNextTimeAfter.nextTimeAfter(testDate);
+            Assertions.assertEquals("Wed Feb 22 09:48:12 EET 2023", nextTime.toString());
+        } catch (ParseException e) {
+            Assertions.fail("ParseException");
+        }
+    }
+
+    @Test
+    public void testNextTimeAfter8() {
+        try {
+            Date testDate = Task.getDateFormat().parse("2023-02-22 09:59");
+            Date nextTime = taskRepeated4TestNextTimeAfter.nextTimeAfter(testDate);
+            Assertions.assertEquals("Wed Feb 22 09:59:12 EET 2023", nextTime.toString());
         } catch (ParseException e) {
             Assertions.fail("ParseException");
         }
