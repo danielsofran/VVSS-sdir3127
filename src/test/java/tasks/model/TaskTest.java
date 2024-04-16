@@ -59,7 +59,7 @@ class TaskTest {
         try {
             taskRepeated4TestNextTimeAfter.setActive(false);
 
-            Date testDate = Task.getDateFormat().parse("2023-02-22 10:00");
+            Date testDate = Task.getDateFormat().parse("2023-02-22 09:00");
             Date nextTime = taskRepeated4TestNextTimeAfter.nextTimeAfter(testDate);
             Assertions.assertNull(nextTime);
         } catch (ParseException e) {
@@ -98,7 +98,7 @@ class TaskTest {
     @Test
     public void testNextTimeAfter5() {
         try {
-            Date testDate = Task.getDateFormat().parse("2023-02-12 10:00:15");
+            Date testDate = Task.getDateFormat().parse("2023-02-12 10:00:12");
             Date nextTime = taskRepeated4TestNextTimeAfter.nextTimeAfter(testDate);
             Assertions.assertEquals("Sun Feb 12 10:00:12 EET 2023", nextTime.toString());
         } catch (ParseException e) {
@@ -109,9 +109,9 @@ class TaskTest {
     @Test
     public void testNextTimeAfter6() {
         try {
-            Date testDate = Task.getDateFormat().parse("2023-02-12 10:00:12");
+            Date testDate = Task.getDateFormat().parse("2023-02-12 10:01:30");
             Date nextTime = taskRepeated4TestNextTimeAfter.nextTimeAfter(testDate);
-            Assertions.assertEquals("Sun Feb 12 10:00:12 EET 2023", nextTime.toString());
+            Assertions.assertEquals("Sun Feb 12 10:01:12 EET 2023", nextTime.toString());
         } catch (ParseException e) {
             Assertions.fail("ParseException");
         }
