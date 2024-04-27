@@ -102,6 +102,7 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>2.22.1</version>
         <configuration>
+          <failIfNoTests>false</failIfNoTests>
           <argLine>
             --illegal-access=permit
             --add-opens=tasks/tasks.view=ALL-UNNAMED

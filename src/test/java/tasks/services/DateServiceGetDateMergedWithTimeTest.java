@@ -28,7 +28,7 @@ class DateServiceGetDateMergedWithTimeTest {
 
     @RepeatedTest(10)
     @Tag("happy-flow")
-    void happyFlow() {
+    public void happyFlow() {
         Integer hour = getRandomNumberInRange(0, 23);
         Integer minute = getRandomNumberInRange(0, 59);
         int year = getRandomNumberInRange(1970, 9999);
@@ -46,7 +46,7 @@ class DateServiceGetDateMergedWithTimeTest {
 
     @Test
     @Tag("invalid-param")
-    void splitterNotFount() {
+    public void splitterNotFount() {
         String time = "23-55";
         Date date = Date.from(Instant.now());
         assertThrows(RuntimeException.class, () -> {
@@ -56,7 +56,7 @@ class DateServiceGetDateMergedWithTimeTest {
 
     @Test
     @Tag("invalid-param")
-    void timeContainsLetters() {
+    public void timeContainsLetters() {
         String time = "23:5a";
         Date date = Date.from(Instant.now());
         assertThrows(NumberFormatException.class, () -> {
@@ -66,7 +66,7 @@ class DateServiceGetDateMergedWithTimeTest {
 
     @Test
     @Tag("invalid-param")
-    void timeUnitExceedsBounds() {
+    public void timeUnitExceedsBounds() {
         String time = "24:00";
         Date date = fromLocalDate(LocalDate.of(1970, 1, 1));
         assertThrows(IllegalArgumentException.class, () -> {
@@ -76,7 +76,7 @@ class DateServiceGetDateMergedWithTimeTest {
 
     @Test
     @Tag("invalid-param")
-    void timeUnitExceedsBounds2() {
+    public void timeUnitExceedsBounds2() {
         String time = "23:60";
         Date date = fromLocalDate(LocalDate.of(1970, 1, 1));
         assertThrows(IllegalArgumentException.class, () -> {
@@ -97,7 +97,7 @@ class DateServiceGetDateMergedWithTimeTest {
     })
     @DisplayName("Positive test cases")
     @Tag("happy-flow")
-    void edgeCases(String time, @ConvertWith(DateConverter.class) Date noTimeDate, @ConvertWith(DateConverter.class) Date expectedDate) {
+    public void edgeCases(String time, @ConvertWith(DateConverter.class) Date noTimeDate, @ConvertWith(DateConverter.class) Date expectedDate) {
         Date resultDate = DateService.getDateMergedWithTime(time, noTimeDate);
         assertEquals(expectedDate, resultDate);
     }
