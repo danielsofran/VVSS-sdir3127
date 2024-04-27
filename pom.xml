@@ -104,7 +104,16 @@
         <configuration>
           <argLine>
             --illegal-access=permit
-<!--            TODO: -add-opens-->
+            --add-opens=tasks/tasks.view=ALL-UNNAMED
+            --add-opens=tasks/tasks.view=ALL-UNNAMED
+            --add-opens=tasks/tasks.services=ALL-UNNAMED
+            --add-opens=tasks/tasks.services=ALL-UNNAMED
+            --add-opens=tasks/tasks.model=ALL-UNNAMED
+            --add-opens=tasks/tasks.model=ALL-UNNAMED
+            --add-opens=tasks/tasks.controller=ALL-UNNAMED
+            --add-opens=tasks/tasks.controller=ALL-UNNAMED
+            --add-opens=tasks/tasks=ALL-UNNAMED
+            --add-opens=tasks/tasks=ALL-UNNAMED
           </argLine>
         </configuration>
       </plugin>
@@ -115,7 +124,8 @@
         <configuration>
           <argLine>
             --illegal-access=permit
-<!--            TODO: -add-opens-->
+            --add-opens=java.base/java.lang=ALL-UNNAMED
+            --add-opens=java.base/java.util=ALL-UNNAMED
           </argLine>
         </configuration>
       </plugin>
