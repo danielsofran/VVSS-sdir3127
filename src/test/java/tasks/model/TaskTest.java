@@ -1,6 +1,7 @@
 package tasks.model;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -11,6 +12,7 @@ import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Objects;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -24,16 +26,16 @@ class TaskTest {
         try {
             task=new Task("new task",Task.getDateFormat().parse("2023-02-12 10:10"));
         } catch (ParseException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
     @Test
     void testTaskCreation() throws ParseException {
-       assert task.getTitle() == "new task";
+       assert Objects.equals(task.getTitle(), "new task");
         System.out.println(task.getFormattedDateStart());
-        System.out.println(task.getDateFormat().format(Task.getDateFormat().parse("2023-02-12 10:10")));
-       assert task.getFormattedDateStart().equals(task.getDateFormat().format(Task.getDateFormat().parse("2023-02-12 10:10")));
+        System.out.println(Task.getDateFormat().format(Task.getDateFormat().parse("2023-02-12 10:10")));
+       assert task.getFormattedDateStart().equals(Task.getDateFormat().format(Task.getDateFormat().parse("2023-02-12 10:10")));
     }
 
     @AfterEach
@@ -80,17 +82,16 @@ class TaskTest {
     @Test
     void testNextTimeAfter1() {
         try {
-            Date toVerifyNextDate = task.nextTimeAfter(null);
-        } catch (NullPointerException e) {
-            return;
+            //noinspection DataFlowIssue
+            task.nextTimeAfter(null);
+            Assertions.fail("call did not throw NPE");
+        } catch (NullPointerException ignored) {
         }
-
-        assert false;
     }
 
     @Test
     void testNextTimeAfter2() {
-        Date currentDate = new GregorianCalendar(2002, 13, 1).getTime();
+        Date currentDate = new GregorianCalendar(2002, Calendar.JANUARY, 1).getTime();
         Date correctNextDate = new GregorianCalendar(2002, Calendar.JANUARY, 2).getTime();
         Date toVerifyNextDate = task.nextTimeAfter(currentDate);
 
