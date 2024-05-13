@@ -22,6 +22,15 @@ public class Task implements Serializable, Cloneable {
     public static SimpleDateFormat getDateFormat(){
         return sdf;
     }
+
+    public Task() {
+        this.title = "";
+        this.active = true;
+        this.start = new Date(1);
+        this.end = new Date(1);
+        this.interval = 0;
+    }
+
     public Task(String title, Date time){
         if (time.getTime() < 0) {
             log.error("time below bound");
