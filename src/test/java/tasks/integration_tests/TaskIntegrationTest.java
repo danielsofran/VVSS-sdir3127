@@ -11,7 +11,7 @@ import tasks.services.TasksService;
 import java.util.Date;
 import java.util.stream.StreamSupport;
 
-public class TaskIT {
+public class TaskIntegrationTest {
 
     private TasksService service;
 
