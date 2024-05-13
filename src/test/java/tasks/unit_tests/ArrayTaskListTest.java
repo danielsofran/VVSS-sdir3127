@@ -1,4 +1,4 @@
-package tasks.model;
+package tasks.unit_tests;
 
 
 import org.junit.jupiter.api.Assertions;
@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
+import tasks.model.ArrayTaskList;
+import tasks.model.Task;
 
 public class ArrayTaskListTest {
 
