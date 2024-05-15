@@ -16,7 +16,7 @@ public class TaskIntegrationTest {
     private TasksService service;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         Task task1 = new Task("ma-sa", new Date(Long.MAX_VALUE / 2));
         Task task2 = new Task("ma-sa", new Date(Long.MAX_VALUE / 2 + 1));
         ArrayTaskList repo = new ArrayTaskList();
@@ -26,13 +26,13 @@ public class TaskIntegrationTest {
     }
 
     @Test
-    void testGetObservableList() {
+    public void testGetObservableList() {
         ObservableList<?> observableList = service.getObservableList();
         Assertions.assertEquals(2, observableList.size());
     }
 
     @Test
-    void testFilterTasksEmptyRange() {
+    public void testFilterTasksEmptyRange() {
         Assertions.assertEquals(
                 0,
                 StreamSupport.stream(

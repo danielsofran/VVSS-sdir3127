@@ -26,7 +26,7 @@ class TaskTest {
     private Task taskNotRepeated4TestNextTimeAfter;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         try {
             task=new Task("new task",Task.getDateFormat().parse("2023-02-12 10:10"));
             task.setActive(true);
@@ -48,7 +48,7 @@ class TaskTest {
     }
 
     @Test
-    void testTaskCreation() throws ParseException {
+    public void testTaskCreation() throws ParseException {
        assert Objects.equals(task.getTitle(), "new task");
         System.out.println(task.getFormattedDateStart());
         System.out.println(Task.getDateFormat().format(Task.getDateFormat().parse("2023-02-12 10:10")));
@@ -56,7 +56,7 @@ class TaskTest {
     }
 
     @AfterEach
-    void tearDown() {
+    public void tearDown() {
     }
 
     private static Stream<Arguments> testNextTimeAfter0DataProvider() {
@@ -90,7 +90,7 @@ class TaskTest {
 
     @ParameterizedTest
     @MethodSource("testNextTimeAfter0DataProvider")
-    void testNextTimeAfter0(Date currentDate, Date correctNextDate) {
+    public void testNextTimeAfter0(Date currentDate, Date correctNextDate) {
         System.out.println(taskRepeated4TestNextTimeAfterIntervalOneDay);
         Date toVerifyNextDate = taskRepeated4TestNextTimeAfterIntervalOneDay.nextTimeAfter(currentDate);
 
@@ -98,7 +98,7 @@ class TaskTest {
     }
 
     @Test
-    void testNextTimeAfterNPE() {
+    public void testNextTimeAfterNPE() {
         try {
             //noinspection DataFlowIssue
             task.nextTimeAfter(null);
@@ -108,7 +108,7 @@ class TaskTest {
     }
 
     @Test
-    void testNextTimeAfterNormalFlow() {
+    public void testNextTimeAfterNormalFlow() {
         Date currentDate = new GregorianCalendar(2002, Calendar.JANUARY, 1).getTime();
         Date correctNextDate = new GregorianCalendar(2023, Calendar.FEBRUARY, 12, 10, 10).getTime();
         Date toVerifyNextDate = task.nextTimeAfter(currentDate);

@@ -17,7 +17,7 @@ public class TasksServiceTest {
     private TasksService service;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
 //        Task task1 = Mockito.spy(new Task());
 //        Task task2 = Mockito.spy(new Task());
         Task task1 = new Task("ma-sa", new Date(Long.MAX_VALUE / 2));
@@ -29,13 +29,13 @@ public class TasksServiceTest {
     }
 
     @Test
-    void testGetObservableList() {
+    public void testGetObservableList() {
         ObservableList<?> observableList = service.getObservableList();
         Assertions.assertEquals(2, observableList.size());
     }
 
     @Test
-    void testFilterTasksEmptyRange() {
+    public void testFilterTasksEmptyRange() {
         Assertions.assertEquals(
                 0,
                 StreamSupport.stream(

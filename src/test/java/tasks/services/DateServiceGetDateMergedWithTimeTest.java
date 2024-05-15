@@ -102,7 +102,7 @@ class DateServiceGetDateMergedWithTimeTest {
         assertEquals(expectedDate, resultDate);
     }
 
-    static class DateConverter extends org.junit.jupiter.params.converter.SimpleArgumentConverter {
+    public static class DateConverter extends org.junit.jupiter.params.converter.SimpleArgumentConverter {
 
         @Override
         protected Object convert(Object source, Class<?> targetType) {

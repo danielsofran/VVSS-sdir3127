@@ -18,19 +18,19 @@ public class ArrayTaskListTest {
     private Task task1;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         MockitoAnnotations.initMocks(this);
     }
 
     @Test
-    void testAddTaskNormalFow() {
+    public void testAddTaskNormalFow() {
         int initialSize = repo.size();
         repo.add(task1);
         Assertions.assertEquals(repo.size(), initialSize + 1);
     }
 
     @Test
-    void testAddTaskNPE() {
+    public void testAddTaskNPE() {
         try {
             //noinspection DataFlowIssue
             repo.add(null);
